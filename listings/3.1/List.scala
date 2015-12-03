@@ -28,9 +28,12 @@ object List {
 		case Cons(h, t) => Cons(value, t)
 	}
 	
-	def drop[A](l: List[A], n: Int): List[A] = n match {
-		case 0 => Nil
-		case _ => tail(l)
+	def drop[A](l: List[A], n: Int): List[A] = {
+		def _drop(l: List[A], n: Int, nl: List[A]): List[A] = n match {
+			case 0 => nl
+			case _ => _drop(tail(l), n - 1, tail(l))
+		}
+		_drop(l, n, Nil)
 	}
 	
 }

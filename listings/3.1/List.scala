@@ -41,4 +41,12 @@ object List {
 		case _ => l
 	}
 	
+	def fill[A](n: Int, a: A): List[A] = {
+		def _fill(n: Int, a: A, li: List[A]): List[A] = n match {
+			case 0 => li
+			case _ => _fill(n - 1, a, Cons(a, li))
+		}
+		_fill(n, a, Nil)
+	}
+	
 }

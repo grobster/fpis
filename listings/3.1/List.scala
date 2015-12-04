@@ -49,4 +49,12 @@ object List {
 		_fill(n, a, Nil)
 	}
 	
+	def init[A](li: List[A]): List[A] = {
+		def _init(li: List[A], nl: List[A]): List[A] = li match {
+			case Nil => nl
+			case Cons(head, tail) if(tail != Nil) => _init(tail, Cons(head, nl))
+			case Cons(head, tail) if(tail == Nil) => nl
+		}
+		_init(li, Nil)
+    }
 }

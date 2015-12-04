@@ -63,9 +63,7 @@ object List {
 		case Cons(h, t) => f(h, foldRight(t, z)(f))
 	}
 	
-	def sum2(li: List[Int]): Int = {
-		foldRight(li, 0) { _ + _ }
-	}
+	def sum2(li: List[Int]) = { foldRight(li, 0) { _ + _ } }
 	
-	def product2(li: List[Double]) = { foldRight(li, 1.0) (_ * _)}
+	def product2(li: List[Double]) = { foldRight(li, 1.0) (_ * _) }
 }

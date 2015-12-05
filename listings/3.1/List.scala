@@ -67,8 +67,5 @@ object List {
 	
 	def product2(li: List[Double]) = { foldRight(li, 1.0) (_ * _) }
 	
-	def length[A](li: List[A]): Int = li match {
-		case Nil => 0
-		case Cons(h,t) => foldRight(li, 0)(length(h) + length(t))
-	}
+	def length[A](li: List[A]): Int = foldRight(li, 0) { (_, acc) => acc + 1}
 }

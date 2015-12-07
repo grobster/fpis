@@ -77,4 +77,9 @@ object List {
 		}
 		_filter(li, Nil)(f)
     }
+	
+	def map[A,B](li: List[A])(f: A => B): List[B] = li match {
+		case Nil => Nil
+		case Cons(h,t) => Cons(f(h), map(t)(f))
+	}
 }

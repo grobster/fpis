@@ -68,4 +68,13 @@ object List {
 	def product2(li: List[Double]) = { foldRight(li, 1.0) (_ * _) }
 	
 	def length[A](li: List[A]): Int = foldRight(li, 0) { (_, acc) => acc + 1}
+	
+	def filter[A](li : List[A])(f: A => Boolean): List[A] = {
+		def _filter(li: List[A], nl: List[A])(f: A => Boolean): List[A] = li match {
+			case Nil => nl
+			case Cons(h, t) if(f(h)) => _filter(t, Cons(h, nl))(f)
+			case Cons(h, t) if(!f(h)) => _filter(t, nl)(f)
+		}
+		_filter(li, Nil)(f)
+    }
 }

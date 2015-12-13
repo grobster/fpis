@@ -89,4 +89,6 @@ object List {
 		case Nil => z
 		case Cons(h,t) => foldLeft(t, f(z, h))(f)
 	}
+	
+	def sum3(li: List[Int]): Int = foldLeft(li, 0)(_ + _)
 }

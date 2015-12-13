@@ -84,4 +84,9 @@ object List {
 	}
 	
 	def reverse[A](li: List[A]): List[A] = foldRight(li, List[A]()){ (a,b) => Cons(a, b)}
+	
+	def foldLeft[A,B](li: List[A], z: B)(f: (B,A) => B): B = li match {
+		case Nil => z
+		case Cons(h,t) => foldLeft(t, f(z, h))(f)
+	}
 }

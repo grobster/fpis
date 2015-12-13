@@ -91,4 +91,6 @@ object List {
 	}
 	
 	def sum3(li: List[Int]): Int = foldLeft(li, 0)(_ + _)
+	
+	def product3(li: List[Double]): Double = foldLeft(li, 1.0)(_ * _)
 }

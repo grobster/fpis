@@ -1,4 +1,4 @@
-package com.grobster.fpinscala.stream
+package com.grobster.fpinscala.option
 
 trait Option[+A] {
 	def map[B](f: A => B): Option[B] = this match {

@@ -41,4 +41,9 @@ object Option {
 		case Nil => Some(Nil)
 		case head :: tail => head flatMap(hh => sequence(tail) map (hh :: _))
 	}
+	
+	def traverse[A,B](a: List[A])(f: A => Option[B]): Option[List[B]] = a match {
+		case Nil => Some(Nil)
+		case head :: tail => map2(f(head), traverse(tail)(f))(_ :: _)
+	}
 }

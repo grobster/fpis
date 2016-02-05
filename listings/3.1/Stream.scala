@@ -53,7 +53,4 @@ object Stream{
 	def empty[A]: Stream[A] = Empty
 	
 	def apply[A](as: A*): Stream[A] = if(as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
-	
-
-
 }

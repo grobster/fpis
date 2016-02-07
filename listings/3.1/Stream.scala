@@ -53,6 +53,8 @@ sealed trait Stream[+A] {
 	
 	def find(p: A => Boolean): Option[A] = filter(p).headOption
 	
+	def constant[A](a: A): Stream[A] =  { lazy val tail: Stream[A] = Cons(() => a, () => tail); tail }
+	
 }
 
 case object Empty extends Stream[Nothing]

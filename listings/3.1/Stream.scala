@@ -47,7 +47,7 @@ sealed trait Stream[+A] {
 	
 	def filter(p: A => Boolean): Stream[A] = foldRight(Stream.empty[A])((h,t) => if(p(h)) Stream.cons(h,t) else t)
 	
-	//def flatMap[B](p: A => Stream[B]): Stream[B] = foldRight(Stream.empty[B])((h,t) => 
+	def flatMap[B](p: A => Stream[B]): Stream[B] = foldRight(Stream.empty[B])((h,t) => p(h) append t)
 	
 	def append[B >: A](s: => Stream[B]): Stream[B] = foldRight(s)((h,t) => Stream.cons(h,t))
 	

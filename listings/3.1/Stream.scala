@@ -51,6 +51,8 @@ sealed trait Stream[+A] {
 	
 	def append[B >: A](s: => Stream[B]): Stream[B] = foldRight(s)((h,t) => Stream.cons(h,t))
 	
+	def find(p: A => Boolean): Option[A] = filter(p).headOption
+	
 }
 
 case object Empty extends Stream[Nothing]

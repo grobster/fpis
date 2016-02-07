@@ -30,6 +30,8 @@ sealed trait Stream[+A] {
 		case _ => false
 	}
 	
+	def exists2(p: A => Boolean): Boolean = foldRight(false)((a,b) => p(a) || b)
+	
 	def takeWhile2(p: A => Boolean): Stream[A] = foldRight(Stream.empty[A])((h,t) => if(p(h)) Stream.cons(h,t) else Stream.empty)
 	
 	def foldRight[B](z: => B)(f: (A, => B) => B): B = this match {

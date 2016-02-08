@@ -54,8 +54,6 @@ sealed trait Stream[+A] {
 	def find(p: A => Boolean): Option[A] = filter(p).headOption
 	
 	def constant[A](a: A): Stream[A] =  { lazy val tail: Stream[A] = Cons(() => a, () => tail); tail }
-	
-	def from(n: Int): Stream[Int] = Stream.cons(n, from(n + 1))
 }
 
 case object Empty extends Stream[Nothing]
@@ -67,6 +65,8 @@ object Stream{
 		lazy val tail = t
 		Cons(() => head, () => tail)
 	}
+	
+	def from(n: Int): Stream[Int] = Stream.cons(n, from(n + 1))
 	
 	def empty[A]: Stream[A] = Empty
 	
@@ -81,6 +81,9 @@ object Stream{
 	}
 	
 	val fibsViaUnfold = unfold((0,1)) { case (f0,f1) => Some(f0,(f1,(f0 + f1))) }
+	
+	def fromViaUnfold(n: Int) = unfold(n)(n => Some((n, n+ 1)))
+	
 	
 	def apply[A](as: A*): Stream[A] = if(as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 }

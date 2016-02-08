@@ -82,6 +82,8 @@ object Stream{
 	
 	val fibsViaUnfold = unfold((0,1)) { case (f0,f1) => Some(f0,(f1,(f0 + f1))) }
 	
+	val onesViaUnfold = unfold(1)(_ => Some((1,1)))
+	
 	def fromViaUnfold(n: Int) = unfold(n)(n => Some((n, n+ 1)))
 	
 	

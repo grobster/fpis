@@ -80,5 +80,7 @@ object Stream{
 		case None => empty
 	}
 	
+	val fibsViaUnfold = unfold((0,1)) { case (f0,f1) => Some(f0,(f1,(f0 + f1))) }
+	
 	def apply[A](as: A*): Stream[A] = if(as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 }

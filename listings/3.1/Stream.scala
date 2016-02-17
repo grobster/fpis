@@ -54,6 +54,11 @@ sealed trait Stream[+A] {
 	def find(p: A => Boolean): Option[A] = filter(p).headOption
 	
 	def constant[A](a: A): Stream[A] =  { lazy val tail: Stream[A] = Cons(() => a, () => tail); tail }
+	
+	def mapViaUnfold[B](f: A => B): Stream[B] = Stream.unfold(this) {
+		case Cons(h,t) => Some((f(h()), t()))
+		case _ => None
+	}
 }
 
 case object Empty extends Stream[Nothing]

@@ -47,5 +47,8 @@ case class SimpleRNG(seed: Long) extends RNG {
 			(i :: i2, r2)
 		}
 	}
-
+	
+	type Rand[+A] = RNG => (A, RNG)
+	
+	def unit[A](a: A): Rand[A] = rng => (a,rng)
 }

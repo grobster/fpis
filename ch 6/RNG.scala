@@ -25,5 +25,10 @@ case class SimpleRNG(seed: Long) extends RNG {
 		val (d,r2) = double(rng)
 		((i,d), r2)
 	}
+	
+	def doubleInt(rng: RNG): ((Double,Int), RNG) = {
+		val ((i,d), r) = intDouble(rng)
+		((d,i),r)
+	}
 
 }

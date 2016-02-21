@@ -56,4 +56,6 @@ case class SimpleRNG(seed: Long) extends RNG {
 		val (a, rng2) = s(rng)
 		(f(a), rng2)
 	}
+	
+	def nonNegativeEven: Rand[Int] = map(nonNegativeInt)(i => i - i % 2)
 }

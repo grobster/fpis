@@ -19,5 +19,11 @@ case class SimpleRNG(seed: Long) extends RNG {
 		val (i,r) = nonNegativeInt(rng)
 		(i / (Int.MaxValue.toDouble + 1), r)
 	}
+	
+	def intDouble(rng: RNG): ((Int,Double), RNG) = {
+		val (i,r) = rng.nextInt
+		val (d,r2) = double(rng)
+		((i,d), r2)
+	}
 
 }

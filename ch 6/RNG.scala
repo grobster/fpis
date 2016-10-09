@@ -76,4 +76,6 @@ object RNG {
 	def randIntDouble: Rand[(Int,Double)] = both(int,double)
 	
 	val randDoubleInt: Rand[(Double, Int)] = both(double, int)
+	
+	def sequence[A](li: List[Rand[A]]): Rand[List[A]] = li.foldRight(unit(List[A]()))((a,b) => map2(a,b)(_ :: _))
 }
